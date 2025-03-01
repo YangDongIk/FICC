@@ -1,4 +1,4 @@
-from financial_product import FinancialProduct
+from .financial_product import FinancialProduct
 
 
 class Traditional_Assets(FinancialProduct):
