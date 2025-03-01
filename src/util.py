@@ -1,4 +1,4 @@
-def generate_property(attr_name):
+def generate_required_property(attr_name):
     private_attr = f"_{attr_name}"
 
     @property
@@ -13,5 +13,18 @@ def generate_property(attr_name):
         setattr(self, private_attr, value)
 
     return prop
-git rm -r --cached src/__pycache__/
-git commit -m "Remove __pycache__ from tracking"
+
+
+def generate_property(attr_name):
+    private_attr = f"_{attr_name}"
+
+    @property
+    def prop(self):
+        value = getattr(self, private_attr, None)
+        return value
+
+    @prop.setter
+    def prop(self, value):
+        setattr(self, private_attr, value)
+
+    return prop
