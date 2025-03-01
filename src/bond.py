@@ -1,47 +1,35 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 
-from .traditional_assets import Traditional_Assets
 from .util import generate_property
+from .traditional_assets import Traditional_Assets
+from .credit_rating import CreditRating
 
 
 @dataclass
 class Bond_Info:
-    type: str
-    code: str
+    bond_type: str
     name: str
     crncy: str
     issue_date: datetime
     maturity_date: datetime
+    coupon_method: str
     coupon_rate: float  # 할인채는 할인발행률
     coupon_cycle: int  # 연당 이표,0는 할인채
     issure: str
     issure_type: str
-    credit_rating: str
+    issure_country: str
+    credit_rating: CreditRating = field(default_factory=CreditRating)
 
 
 class Bond(Traditional_Assets):
     def __init__(
         self,
+        division_code,
+        fund_code,
         type,
         code,
-        name,
-        quantity,
-        crncy,
-        issue_date,
-        maturity_date,
-        cpn_rate,
+        bond_info: Bond_Info,
     ):
-        super().__init__(type, code, name, quantity, crncy)
-        self.issue_date = issue_date
-        self.maturity_date = maturity_date
-        self.cpn_rate = cpn_rate
-        self._issure = None
-        self._ytm = None
-        self._price = None
-
-    issure = generate_property("issure")
-    ytm = generate_property("ytm")
-    price = generate_property("price")
-    issure_type = generate_property("issure_type")
-    bond_type = generate_property("bond_type")
+        super().__init__(division_code, fund_code, type, code)
+        self.bond_info = bond_info

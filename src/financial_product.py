@@ -1,19 +1,15 @@
 from abc import ABC, abstractmethod
+from .util import generate_required_property
 
 
 class FinancialProduct(ABC):
-    def __init__(self, type, product_code, product_name):
+    def __init__(self, division_code, fund_code, type, product_code):
+        self.division_code = division_code
+        self.fund_code = fund_code
         self.product_type = type  # 상품구분
         self.product_code = product_code  # 상품코드
-        self.product_name = product_name  # 상품명
         self._position = None
+        self._long_short = None
 
-    @property
-    def position(self):
-        if self._position is None:
-            raise ValueError("position 속성이 설정되지 않았습니다.")
-        return self._position
-
-    @position.setter
-    def position(self, value):
-        self._position = value
+    long_short = generate_required_property("long_short")
+    position = generate_required_property("position")

@@ -2,8 +2,7 @@ from .financial_product import FinancialProduct
 
 
 class Traditional_Assets(FinancialProduct):
-    def __init__(self, type, code, name, issure, quantity, crncy):
-        super().__init__(type, code, name)
-        self.issure = issure
-        self.quantity = quantity
-        self.crncy = crncy
+    def __init__(self, division_code, fund_code, product_type, product_code):
+        super().__init__(division_code, fund_code, product_type, product_code)
+        self._quantity = None
+        self._price = None
