@@ -6,8 +6,8 @@ sys.path.append(str(Path(__file__).parent))
 import xlwings as xw
 import pandas as pd
 
-from src.bond import Bond, Bond_Info
-from src.credit_rating import CreditRating
+from src.product.bond import Bond, Bond_Info
+from src.credit_rating.credit_rating import CreditRating
 
 
 def main():
@@ -29,19 +29,17 @@ def main():
             issue_date=row["발행일자"],
             maturity_date=row["만기일자"],
             coupon_method=row["이자지급방법"],
-            coupon_rate=(row["표면이율"]/100),
+            coupon_rate=(row["표면이율"] / 100),
             coupon_cycle=None,
             issure=None,
             issure_type=None,
             issure_country=None,
             credit_rating=CreditRating(),
-            )
-        
-        div_code = str(int(row["부서코드"])).zfill(5)
-        fund_code = str(int(row['펀드코드']))
-        this_bond = Bond(div_code, fund_code, "채권",row['종목번호'],bond_info)
+        )
 
-        
+        div_code = str(int(row["부서코드"])).zfill(5)
+        fund_code = str(int(row["펀드코드"]))
+        this_bond = Bond(div_code, fund_code, "채권", row["종목번호"], bond_info)
 
     return None
 

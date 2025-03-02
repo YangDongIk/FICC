@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
 from datetime import datetime
 
-from .util import generate_property
-from .traditional_assets import Traditional_Assets
-from .credit_rating import CreditRating
+from ..utils.cls_prop import generate_property
+from ..traditional_assets import Traditional_Assets
+from ..credit_rating.credit_rating import CreditRating
 
 
 @dataclass

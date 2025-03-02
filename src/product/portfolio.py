@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import pandas as pd
-from risk import RiskAmount
+from src.risk_amount.risk import RiskAmount
 
 
 class Portfolio(ABC):
