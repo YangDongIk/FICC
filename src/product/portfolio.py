@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import pandas as pd
-from src.risk_amount.risk import RiskAmount
+
+# from risk_amount.risk import RiskAmount
 
 
 class Portfolio(ABC):
@@ -8,7 +9,7 @@ class Portfolio(ABC):
         self.name = name
         self.products = {}  # 딕셔너리 형태로 변경 {상품코드: 금융상품 객체}
         self.sub_portfolios = []
-        self.risk_amount = RiskAmount()
+        # self.risk_amount = RiskAmount()
 
     def add_product(self, product, product_code):
         """포트폴리오에 금융상품 추가 (상품 코드를 키로 사용)"""

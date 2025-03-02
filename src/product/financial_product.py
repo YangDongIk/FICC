@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from .util import generate_required_property
+from utils.cls_prop import generate_required_property
 
 
 class FinancialProduct(ABC):

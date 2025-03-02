@@ -1,4 +1,4 @@
-from src.credit_rating.rating_value import RatingValue
+from credit_rating.rating_value import RatingValue
 
 
 class ExternalRating:

@@ -1,4 +1,8 @@
 {
   "editor.defaultFormatter": "ms-python.black-formatter",
-  "notebook.defaultFormatter": "ms-python.black-formatter"
+  "notebook.defaultFormatter": "ms-python.black-formatter",
+  "python.analysis.extraPaths": ["C:\\CodingProject\\FICC\\"],
+  "python.autoComplete.extraPaths": ["C:\\CodingProject\\FICC\\"],
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false
 }

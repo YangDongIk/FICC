@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
 from datetime import datetime
 
-from ..utils.cls_prop import generate_property
-from ..traditional_assets import Traditional_Assets
-from ..credit_rating.credit_rating import CreditRating
+from utils.cls_prop import generate_property
+from product.traditional_assets import Traditional_Assets
+from credit_rating.credit_rating import CreditRating
 
 
 @dataclass
@@ -19,7 +19,7 @@ class Bond_Info:
     issure: str
     issure_type: str
     issure_country: str
-    credit_rating: CreditRating = field(default_factory=CreditRating)
+    bond_type_code: str
 
 
 class Bond(Traditional_Assets):
@@ -30,6 +30,28 @@ class Bond(Traditional_Assets):
         type,
         code,
         bond_info: Bond_Info,
+        rating: CreditRating,
     ):
         super().__init__(division_code, fund_code, type, code)
         self.bond_info = bond_info
+        self._rating = rating
+
+    @property
+    def external_rating(self):
+        if self.bond_info.bond_type_code in [
+            "C21",
+            "111200",
+            "111100",
+        ]:
+            return "국채_무등급"
+        return self._rating.external_rating
+
+    @property
+    def internal_rating(self):
+        if self.bond_info.bond_type_code in [
+            "C21",
+            "111200",
+            "111100",
+        ]:
+            return "1"
+        return self._rating.internal_rating

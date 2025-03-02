@@ -6,12 +6,15 @@ sys.path.append(str(Path(__file__).parent))
 import xlwings as xw
 import pandas as pd
 
-from src.product.bond import Bond, Bond_Info
-from src.credit_rating.credit_rating import CreditRating
+from product.bond import Bond, Bond_Info
+from credit_rating.credit_rating import CreditRating
 
 
 def main():
-    wb = xw.Book("data/2024-09-12/W6644_채권.csv")
+    # 현재 실행하는 스크립트의 위치 확인
+    current_dir = Path(__file__).resolve().parent
+    file_path = current_dir.parent / "data/2024-09-12/W6644_채권.csv"
+    wb = xw.Book(file_path)
 
     rd = (
         wb.sheets[0]
@@ -34,12 +37,18 @@ def main():
             issure=None,
             issure_type=None,
             issure_country=None,
-            credit_rating=CreditRating(),
+        )
+
+        cr = CreditRating(
+            kis=row["신용등급KIS"],
+            kap=row["신용등급KBP"],
+            nice=row["신용등급NIC"],
+            fnp=row["신용등급FNP"],
         )
 
         div_code = str(int(row["부서코드"])).zfill(5)
         fund_code = str(int(row["펀드코드"]))
-        this_bond = Bond(div_code, fund_code, "채권", row["종목번호"], bond_info)
+        this_bond = Bond(div_code, fund_code, "채권", row["종목번호"], bond_info, cr)
 
     return None
 

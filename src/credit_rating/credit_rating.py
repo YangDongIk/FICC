@@ -1,5 +1,5 @@
-from src.credit_rating.external_rating import ExternalRating
-from src.credit_rating.rating_value import RatingValue
+from credit_rating.external_rating import ExternalRating
+from credit_rating.rating_value import RatingValue
 
 
 class CreditRating:
